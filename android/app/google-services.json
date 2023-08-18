@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "408799069749",
+    "project_id": "iti-project-8314c",
+    "storage_bucket": "iti-project-8314c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408799069749:android:658b26f64a439f19b6d37c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408799069749-5eghlj3tmrvll3loucur4hd6c351eah0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy1R4dqAOxP8I9WoiMWNAwbmk_dSn2V24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "408799069749-5eghlj3tmrvll3loucur4hd6c351eah0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

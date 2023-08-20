@@ -1,8 +1,10 @@
 // ignore_for_file: unused_import
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Register.dart';
+import 'package:flutter_application_1/TheApp/Categories.dart';
 import 'package:flutter_application_1/TheApp/Layout.dart';
 import 'package:flutter_application_1/TheApp/ToDoList.dart';
 import 'package:flutter_application_1/TheApp/onBoarding.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const onBoarding(),
+      home: const Categories(),
     );
   }
 }

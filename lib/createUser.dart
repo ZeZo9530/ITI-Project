@@ -84,7 +84,9 @@ class _createUserState extends State<createUser> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Layout(uids: uidz),
+                      builder: (context) => Layout(
+                        uids: uidz,
+                      ),
                     ));
                 await docUser.set(json);
               },

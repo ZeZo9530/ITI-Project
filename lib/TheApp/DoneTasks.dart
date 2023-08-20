@@ -2,33 +2,24 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/TheApp/DoneTasks.dart';
 import 'package:flutter_application_1/TheApp/InProgress.dart';
+import 'package:flutter_application_1/TheApp/ToDoList.dart';
 import 'package:flutter_application_1/TheApp/taskBuilder.dart';
 
-class ToDoScreen extends StatefulWidget {
-  const ToDoScreen({super.key});
+class DoneTasks extends StatefulWidget {
+  static List todolistz = [];
+  const DoneTasks({super.key});
 
   @override
-  State<ToDoScreen> createState() => _ToDoScreenState();
+  State<DoneTasks> createState() => _DoneTasksState(todoListz: todolistz);
 }
 
 TextEditingController inputController = TextEditingController();
 bool? isChecked = false;
 
-List todoList = [
-  // ["make tea", false],
-  // ['do task', false],
-  // ['call mom', false],
-  // ["take break", false],
-  // ['make food', false]
-];
-
-class _ToDoScreenState extends State<ToDoScreen> {
-  void inprogrezz() {
-    InProgress.todolists = todoList;
-  }
-
+class _DoneTasksState extends State<DoneTasks> {
+  _DoneTasksState({required this.todoListz});
+  List todoListz;
   void createNewTask() {
     showDialog(
         context: context,
@@ -47,10 +38,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
                       MaterialButton(
                         onPressed: () {
                           setState(() {
-                            todoList.add([inputController.text, false]);
+                            todoListz.add([inputController.text, false]);
                             Navigator.of(context).pop();
                             inputController.clear();
-                            inprogrezz();
                           });
                         },
                         color: Colors.deepPurple[200],
@@ -78,19 +68,15 @@ class _ToDoScreenState extends State<ToDoScreen> {
 
   void deleteTask(int index) {
     setState(() {
-      todoList.removeAt(index);
+      todoListz.removeAt(index);
     });
   }
 
-  void checkBoxChanged(bool? value, int index) {
-    setState(() {
-      todoList[index][1] = !todoList[index][1];
-      if (todoList[index][1] == true) {
-        DoneTasks.todolistz.add(todoList[index]);
-        InProgress.todolists.remove(todoList[index]);
-      } else {}
-    });
-  }
+  // void checkBoxChanged(bool? value, int index) {
+  //   setState(() {
+  //     todoList[index][1] = true;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +92,6 @@ class _ToDoScreenState extends State<ToDoScreen> {
         centerTitle: true,
         backgroundColor: Colors.deepPurple[400],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: createNewTask,
-        backgroundColor: Colors.grey[300],
-        child: const Icon(Icons.add),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.separated(
@@ -119,12 +100,16 @@ class _ToDoScreenState extends State<ToDoScreen> {
             itemBuilder: (context, index) {
               return taskBuilder(
                 deleteFunction: (context) => deleteTask(index),
-                taskName: todoList[index][0],
-                taskCompleted: todoList[index][1],
-                onChanged: (value) => checkBoxChanged(value, index),
+                taskName: todoListz[index][0],
+                taskCompleted: todoListz[index][1],
+                onChanged: (value) {
+                  setState(() {
+                    todoListz[index][1] = !todoListz[index][1];
+                  });
+                },
               );
             },
-            itemCount: todoList.length,
+            itemCount: todoListz.length,
             separatorBuilder: (context, index) => const Divider()),
       ),
     );

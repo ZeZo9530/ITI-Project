@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class taskBuilder extends StatefulWidget {
-  taskBuilder(
-      {super.key, required this.taskName, required this.deleteFunction});
+class taskBuilder extends StatelessWidget {
   final String taskName;
+  final bool? taskCompleted;
+  final Function(bool?)? onChanged;
   final Function(BuildContext)? deleteFunction;
-  @override
-  State<taskBuilder> createState() =>
-      _taskBuilder(taskName: taskName, deleteFunction: deleteFunction);
-}
+  taskBuilder(
+      {super.key,
+      required this.taskName,
+      required this.taskCompleted,
+      required this.onChanged,
+      required this.deleteFunction});
 
-bool? isChecked = false;
-
-class _taskBuilder extends State<taskBuilder> {
-  _taskBuilder({required this.taskName, required this.deleteFunction});
-  String taskName;
-  Function(BuildContext)? deleteFunction;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,14 +36,15 @@ class _taskBuilder extends State<taskBuilder> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Checkbox(
-                value: isChecked,
-                activeColor: const Color.fromARGB(255, 19, 19, 19),
-                onChanged: (value) {
-                  setState(() {
-                    isChecked = value;
-                  });
-                },
-              ),
+                  value: taskCompleted,
+                  activeColor: const Color.fromARGB(255, 19, 19, 19),
+                  onChanged: onChanged
+                  //  (value) {
+                  //   setState(() {
+                  //     taskCompleted = value;
+                  //   });
+                  // },
+                  ),
               Expanded(
                 child: Text(
                   taskName,
